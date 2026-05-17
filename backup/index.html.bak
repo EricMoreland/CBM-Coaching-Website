@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CBM - Created By Moreland</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header class="top-bar">
+  <div class="top-bar-inner">
+    <p>No guesswork. No boredom. Just results.</p>
+    <button class="mobile-menu-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
+  </div>
+</header>
+
+<div class="layout">
+
+  <aside class="sidebar">
+    <div class="sidebar-top">
+      <div class="logo">CBM</div>
+      <button class="sidebar-close" aria-label="Close menu">×</button>
+    </div>
+
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+
+    <button class="book-btn">BOOK NOW</button>
+  </aside>
+
+  <main class="hero-section" id="home">
+
+    <div class="bg-text">CBM</div>
+
+    <div class="hero-content">
+      <p class="tag">COACHED BY MORELAND</p>
+
+      <h1>
+        Finally, a<br>
+        Fitness<br>
+        Plan That<br>
+        Fits <span>Your</span><br>
+        <span>Life</span>
+      </h1>
+
+      <p class="subtext">
+        No guessing, no boredom, just results. Say goodbye
+        to gym confusion and hello to workouts you actually
+        love.
+      </p>
+
+      <div class="hero-buttons">
+        <button class="primary-btn book-open">BOOK YOUR FREE CONSULT →</button>
+      </div>
+    </div>
+
+    <div class="hero-image-wrap">
+      <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=1200&auto=format&fit=crop" alt="Fitness Coach">
+
+      <div class="coach-card">
+        <small>YOUR COACH</small>
+        <h3>Moreland</h3>
+        <p>World Champion • 7+ Years</p>
+      </div>
+    </div>
+
+  </main>
+
+</div>
+<div class="menu-backdrop"></div>
+<div class="content-wrapper">
+
+<section class="feelings-section">
+  <div class="feelings-container">
+    <p class="section-tag">SOUND FAMILIAR?</p>
+    <h2>
+      Feeling Bored,<br>
+      Overwhelmed,<br>
+      or <span>Stuck?</span>
+    </h2>
+    
+    <div class="feelings-grid">
+      <div class="feeling-card bored">
+        <h3>Bored</h3>
+        <p>"My brain just shuts down at the gym and I go through the motions without caring."</p>
+      </div>
+
+      <div class="feeling-card stuck">
+        <h3>Stuck</h3>
+        <p>"Whenever I start I get excited for a day then I'm like nooope, tomorrow!"</p>
+      </div>
+
+      <div class="feeling-card lost">
+        <h3>Lost</h3>
+        <p>"I have trouble even STARTING to workout; I don't know what to do."</p>
+      </div>
+
+      <div class="feeling-card watched">
+        <h3>Watched</h3>
+        <p>"I feel like everyone is watching me do it wrong."</p>
+        <div class="watched-highlight">GYM INTIMIDATION IS REAL. WE ELIMINATE IT COMPLETELY.</div>
+      </div>
+    </div>
+
+    <p class="feelings-subtitle">
+      Without a clear plan and support, fitness can feel impossible. No fun → no effort → no results → no motivation → repeat. It shouldn't be this hard.
+    </p>
+  </div>
+
+  <div class="feelings-image">
+    <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1200&auto=format&fit=crop" alt="Gym intimidation">
+  </div>
+</section>
+
+<section class="guide-section">
+  <div class="guide-image">
+    <img src="https://images.unsplash.com/photo-1517960461725-81a3e7069aad?q=80&w=1200&auto=format&fit=crop" alt="Personal coaching session">
+  </div>
+
+  <div class="guide-content">
+    <p class="section-tag">YOUR GUIDE</p>
+    <h2>
+      No More Struggle,<br>
+      <span>We've Got Your<br>
+      Back</span>
+    </h2>
+
+    <p class="guide-text">
+      You deserve a plan that fits your life and makes workouts enjoyable. That's exactly what CBM provides. Your coach, Moreland, a World Champion bodybuilder with 7+ years of training, becomes your guide.
+    </p>
+
+    <p class="guide-text">
+      He understands how you feel when the gym feels boring or "everyone's watching." Together you'll create healthy habits and workouts you actually look forward to. This isn't about us, it's about you building strength, confidence, and a healthy lifestyle.
+    </p>
+
+    <div class="guide-pills">
+      <span class="pill">Nutrition</span>
+      <span class="pill">Strength</span>
+      <span class="pill">Science</span>
+      <span class="pill">Consistency</span>
+      <span class="pill">Mindset</span>
+    </div>
+
+    <div class="guide-stats">
+      <div class="guide-stat">
+        <h4>7+</h4>
+        <p>Years Experience</p>
+      </div>
+      <div class="guide-stat">
+        <h4>100%</h4>
+        <p>Personalized to You</p>
+      </div>
+      <div class="guide-stat">
+        <h4>#1</h4>
+        <p>World Champion</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <section class="about-page" id="about">
+
+  <div class="about-header">
+    <p class="section-tag">ABOUT CBM</p>
+
+    <h2>
+      Built From Real
+      <span>Experience</span>,
+      Not Just Theory
+    </h2>
+
+    <p class="about-intro">
+      Created By Moreland was built for people who are tired of starting over.
+      This is coaching focused on building your body, mindset, habits, and confidence together.
+    </p>
+  </div>
+
+  <div class="about-grid">
+
+    <div class="about-image-wrap">
+      <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1200&auto=format&fit=crop" alt="CBM Coach">
+
+      <div class="experience-card">
+        <h3>7+ Years</h3>
+        <p>Training & Coaching Experience</p>
+      </div>
+    </div>
+
+    <div class="about-content">
+
+      <div class="about-box">
+        <h3>You Don’t Need More Motivation</h3>
+        <p>
+          Most people fail because their plan doesn’t fit their real life.
+          CBM coaching adapts your training and nutrition around your energy,
+          stress, schedule, and goals so you can actually stay consistent.
+        </p>
+      </div>
+
+      <div class="about-box">
+        <h3>Enjoyment Creates Results</h3>
+        <p>
+          If you hate your plan, you won’t stick to it.
+          That’s why every program is built to help you enjoy training,
+          build confidence, and make progress without burnout.
+        </p>
+      </div>
+
+      <div class="about-box">
+        <h3>Real Coaching. No BS.</h3>
+        <p>
+          From fat loss and bodybuilding to performance and lifestyle habits,
+          you get direct guidance, accountability, and support that actually
+          helps you become better long term.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="stats-row">
+
+    <div class="stat-card">
+      <h3>30+ Weeks</h3>
+      <p>Personal Dieting Experience</p>
+    </div>
+
+    <div class="stat-card">
+      <h3>World Champion</h3>
+      <p>Bodybuilding Experience</p>
+    </div>
+
+    <div class="stat-card">
+      <h3>Online & Local</h3>
+      <p>Coaching Available Anywhere</p>
+    </div>
+
+  </div>
+
+</section>
+
+<section class="services-page">
+
+  <div class="services-top">
+
+    <div class="services-left">
+      <p class="section-tag">THE CBM SOLUTION</p>
+
+      <h2>
+        Guided<br>
+        Coaching, <span>Real<br>
+        Results</span>
+      </h2>
+
+      <p class="services-text">
+        We fix those problems with personalized, expert coaching.
+        Moreland will map out your workouts, nutrition, and habits
+        in a way that makes sense for you. No more second-guessing.
+      </p>
+    </div>
+
+  </div>
+
+  <div class="solution-image">
+    <img src="https://images.unsplash.com/photo-1499714608240-22fc6ad53fb2?q=80&w=1400&auto=format&fit=crop" alt="Athlete training with coach">
+  </div>
+
+  <div class="solution-cards">
+    <div class="solution-card">
+      <div class="card-icon">📅</div>
+      <h3>Consistent Progress</h3>
+      <p>Weekly coaching and easy-to-follow routines keep you on track. No more skipping workouts or 'saying tomorrow' like before.</p>
+    </div>
+
+    <div class="solution-card">
+      <div class="card-icon">👤</div>
+      <h3>Personalized Support</h3>
+      <p>A plan made for your body and schedule. We address each frustration — injury fears, confusion, boredom — with care.</p>
+    </div>
+
+    <div class="solution-card">
+      <div class="card-icon">🔥</div>
+      <h3>Fun, Sustainable Workouts</h3>
+      <p>We design workouts you can actually enjoy. Many clients say working out with us feels exciting again — not a chore.</p>
+    </div>
+  </div>
+
+</section>
+
+
+<section class="benefits-page">
+
+  <div class="benefits-left">
+
+    <p class="section-tag">WHAT YOU CAN EXPECT</p>
+
+    <h2>
+      3 Benefits You'll
+      <span>Love</span>
+    </h2>
+
+    <div class="benefits-list">
+
+      <div class="benefit-item">
+        <div class="benefit-icon">⚡</div>
+
+        <div>
+          <h3>Quick Fat Loss & Lean Muscle</h3>
+
+          <p>
+            Get tailored workouts, personalized nutrition, and real
+            accountability plans made around your goals.
+          </p>
+        </div>
+      </div>
+
+      <div class="benefit-item">
+        <div class="benefit-icon">♡</div>
+
+        <div>
+          <h3>Habits & Lifestyle Change</h3>
+
+          <p>
+            No fad diets. We teach you simple habits that fit everyday life.
+            This helps create lasting results.
+          </p>
+        </div>
+      </div>
+
+      <div class="benefit-item">
+        <div class="benefit-icon">🏆</div>
+
+        <div>
+          <h3>Confidence & Support</h3>
+
+          <p>
+            You'll feel supported, motivated, and actually excited to train again.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="benefits-image">
+    <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&w=1200&auto=format&fit=crop" alt="">
+  </div>
+
+</section>
+
+
+<section class="transform-section">
+
+  <p class="section-tag center">START TODAY</p>
+
+  <h2>
+    Ready to
+    <span>Transform?</span>
+  </h2>
+
+  <p>
+    Don’t wait. Every day you delay is another day stuck feeling heavy
+    and unmotivated. Take the first step now and we’ll personalize a
+    plan just for you.
+  </p>
+
+  <a href="#" class="transform-btn">
+    BOOK YOUR FREE CONSULT →
+  </a>
+
+  <small>Claim your spot — get started this week</small>
+
+</section>
+
+<section class="faq-page">
+
+  <div class="faq-inner">
+
+    <p class="section-tag">COMMON QUESTIONS</p>
+
+    <h2>FAQ</h2>
+
+    <div class="faq-list">
+
+      <div class="faq-item active">
+        <button class="faq-question">
+          I’m really busy — how can I fit this in?
+          <span>+</span>
+        </button>
+
+        <div class="faq-answer">
