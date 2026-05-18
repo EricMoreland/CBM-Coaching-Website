@@ -5,7 +5,7 @@
 }
 
 :root{
-  --sidebar-width: 280px;
+  --sidebar-width: 260px;
   --topbar-height: 60px;
   --content-max: 1400px;
 }
@@ -123,7 +123,7 @@ body.menu-open {
 }
 
 .sidebar {
-  width: 280px;
+  width: 260px;
   max-width: var(--sidebar-width);
   background: linear-gradient(180deg, #181818 0%, #101010 100%);
   border-right: 1px solid rgba(255,255,255,0.08);
@@ -133,7 +133,7 @@ body.menu-open {
   padding: 35px 35px 60px;
   position: sticky;
   top: 0;
-  height: 100vh;
+  height: 100dvh;
 }
 
 .page-layout {
@@ -247,6 +247,15 @@ nav a:hover {
   padding-top: 4px; /* minimal top spacing to sit under the top-bar */
 }
 
+@media(max-width: 700px){
+
+  .hero-section {
+    min-height: auto;
+    padding-top: 100px;
+  }
+
+}
+
 .bg-text {
   position: absolute;
   font-size: clamp(16rem, 20vw, 30rem);
@@ -293,7 +302,7 @@ h1 span {
 }
 
 .subtext {
-  font-size: 1.3rem;
+  font-size: clamp(1rem, 1.2vw, 1.3rem);
   color: #b8b8b8;
   max-width: 620px;
   line-height: 1.6;
@@ -446,10 +455,6 @@ h1 span {
     gap: 40px;
   }
 
-  h1 {
-    font-size: 4.5rem;
-  }
-
   .hero-image-wrap img {
     width: 100%;
     max-width: 520px;
@@ -464,10 +469,6 @@ h1 span {
 }
 
 @media(max-width: 700px){
-
-  h1 {
-    font-size: 3.2rem;
-  }
 
   .subtext {
     font-size: 1rem;
