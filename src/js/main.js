@@ -15,7 +15,8 @@ const faqButtons = $$('.faq-question');
 const revealTargets = $$('.page-main > section, .content-wrapper > section, .footer');
 
 const CTA_WHATSAPP_NUMBER = '27795451880';
-const CTA_WHATSAPP_MESSAGE = 'Hi Eric, I would like to find out more about your services.';
+const CTA_WHATSAPP_MESSAGE =
+  "Hey Eric! I just went through your website and I'm really interested in CBM coaching. Can you tell me more about how it works and what's included?";
 const CTA_INSTAGRAM_USERNAME = 'ericmorelandofficial';
 const CTA_WHATSAPP_URL = `https://wa.me/${CTA_WHATSAPP_NUMBER}?text=${encodeURIComponent(
   CTA_WHATSAPP_MESSAGE
