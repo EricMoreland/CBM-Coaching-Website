@@ -2,8 +2,6 @@
 
 A polished, responsive marketing page for a fitness coaching brand built with semantic HTML, modern CSS, and lightweight JavaScript.
 
-**GitHub repo description:** Responsive fitness coaching landing page with clean mobile navigation and modern black/green styling.
-
 ## Features
 
 - Responsive desktop, tablet, and mobile layout
