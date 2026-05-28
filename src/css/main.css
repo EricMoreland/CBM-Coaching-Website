@@ -8,31 +8,64 @@
   --sidebar-width: 280px;
   --topbar-height: 60px;
   --content-max: 1320px;
-  --bg: #000000;
+  --bg: #0a0a0a;
+  --bg-deep: #050505;
   --surface: #111111;
   --surface-strong: #181818;
   --text: #ffffff;
   --muted: #b5b5b5;
+  --muted-soft: #8a8a8a;
   --accent: #d7ff3f;
-  --border: rgba(255, 255, 255, 0.08);
+  --accent-soft: rgba(215, 255, 63, 0.14);
+  --accent-glow: 0 12px 40px rgba(215, 255, 63, 0.22);
+  --border: rgba(255, 255, 255, 0.07);
+  --border-strong: rgba(255, 255, 255, 0.12);
   --radius: 28px;
-  --shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+  --shadow: 0 18px 40px rgba(0, 0, 0, 0.4);
+  --font-display: 'Montserrat', system-ui, sans-serif;
+  --font-body: 'Inter', 'Montserrat', system-ui, sans-serif;
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 html {
-  scroll-behavior: smooth;
   text-rendering: optimizeLegibility;
   -webkit-text-size-adjust: 100%;
-  overflow-x: hidden;
+  /* overflow-x: hidden on html breaks position: sticky on the sidebar
+     because it converts overflow to "hidden auto", making html a scroll
+     container. Keep horizontal overflow control on body only. */
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 body {
   min-height: 100vh;
-  background: var(--bg);
+  background:
+    radial-gradient(1200px 600px at 80% -10%, rgba(215, 255, 63, 0.06), transparent 60%),
+    radial-gradient(900px 500px at -10% 30%, rgba(215, 255, 63, 0.04), transparent 65%),
+    var(--bg);
   color: var(--text);
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--font-body);
   line-height: 1.65;
-  overflow-x: hidden;
+  overflow-x: clip; /* clip prevents horizontal scroll without creating a
+                       scroll container — preserves position: sticky behavior
+                       on the sidebar (unlike overflow-x: hidden). */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'kern', 'liga', 'calt';
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
 }
 
 img,
@@ -56,6 +89,25 @@ button {
   cursor: pointer;
 }
 
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 16px;
+  background: var(--accent);
+  color: var(--bg);
+  padding: 10px 18px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  z-index: 9999;
+  border-radius: 0 0 8px 8px;
+  text-decoration: none;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
 ::selection {
   background: rgba(215, 255, 63, 0.2);
 }
@@ -75,6 +127,12 @@ body.menu-open {
   background: rgba(0, 0, 0, 0.94);
   border-bottom: 1px solid rgba(215, 255, 63, 0.12);
   backdrop-filter: blur(10px);
+  transform: translateY(0);
+  transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.top-bar.hidden {
+  transform: translateY(-100%);
 }
 
 .top-bar-inner {
@@ -159,9 +217,11 @@ body.menu-open {
   overscroll-behavior: contain;
 }
 
-.sidebar.open {
-  transform: translateX(0);
-  box-shadow: 6px 0 50px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(215, 255, 63, 0.06);
+@media (max-width: 900px) {
+  .sidebar.open {
+    transform: translateX(0);
+    box-shadow: 6px 0 50px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(215, 255, 63, 0.06);
+  }
 }
 
 .sidebar-top {
@@ -222,7 +282,6 @@ nav a {
   padding: 12px 14px;
   border-radius: 16px;
   transition: color 0.25s ease, background 0.25s ease;
-  display: block;
   min-height: 44px;
   display: flex;
   align-items: center;
@@ -309,6 +368,12 @@ nav a::before {
   padding-top: calc(var(--topbar-height) + 18px);
 }
 
+#home,
+#about,
+#faq {
+  scroll-margin-top: calc(var(--topbar-height) + 12px);
+}
+
 .content-wrapper {
   width: min(100%, var(--content-max));
   margin: 0 auto;
@@ -333,6 +398,7 @@ nav a::before {
   color: rgba(255, 255, 255, 0.03);
   pointer-events: none;
   z-index: 0;
+  will-change: transform;
 }
 
 .hero-content {
@@ -806,8 +872,28 @@ h1 span {
 }
 
 .card-icon {
-  font-size: 2.7rem;
-  margin-bottom: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 20px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(215, 255, 63, 0.18), rgba(215, 255, 63, 0.04));
+  border: 1px solid rgba(215, 255, 63, 0.3);
+  color: var(--accent);
+  box-shadow: 0 8px 24px rgba(215, 255, 63, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+.card-icon svg {
+  width: 26px;
+  height: 26px;
+  display: block;
+}
+.solution-card:hover .card-icon {
+  transform: translateY(-2px) rotate(-3deg);
+  border-color: rgba(215, 255, 63, 0.55);
+  box-shadow: 0 12px 32px rgba(215, 255, 63, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .solution-card h3 {
@@ -843,16 +929,28 @@ h1 span {
 }
 
 .benefit-icon {
-  width: 45px;
-  min-width: 45px;
-  height: 45px;
+  width: 52px;
+  min-width: 52px;
+  height: 52px;
   border-radius: 16px;
-  background: rgba(215, 255, 63, 0.12);
+  background: linear-gradient(135deg, rgba(215, 255, 63, 0.2), rgba(215, 255, 63, 0.04));
+  border: 1px solid rgba(215, 255, 63, 0.28);
   color: var(--accent);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.1rem;
+  box-shadow: 0 6px 18px rgba(215, 255, 63, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition: transform 0.3s var(--ease), border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+.benefit-icon svg {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+.benefit-item:hover .benefit-icon {
+  transform: translateY(-2px);
+  border-color: rgba(215, 255, 63, 0.5);
+  box-shadow: 0 10px 24px rgba(215, 255, 63, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .benefit-item h3 {
@@ -937,17 +1035,28 @@ h1 span {
   transform: rotate(45deg);
 }
 
+.faq-question:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
 .faq-answer {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.35s ease;
+  transition: max-height 0.4s ease, padding-bottom 0.3s ease, opacity 0.3s ease;
   color: var(--muted);
   padding-bottom: 0;
+  opacity: 0;
 }
 
+/* Generous max-height so any FAQ answer fits without clipping; the actual
+   rendered height is the content's intrinsic height (max-height is just the
+   upper bound for the transition). */
 .faq-item.active .faq-answer {
-  max-height: 280px;
+  max-height: 600px;
   padding-bottom: 18px;
+  opacity: 1;
 }
 
 .footer {
@@ -985,6 +1094,12 @@ h1 span {
   color: var(--muted);
   word-break: break-word;
   overflow-wrap: anywhere;
+}
+
+.footer-section a:hover,
+.footer-section a:focus-visible {
+  color: var(--text);
+  text-decoration: underline;
 }
 
 .app-feature-block {
@@ -1038,13 +1153,14 @@ h1 span {
   text-align: center;
 }
 
-.reveal {
+.js-ready .reveal {
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 0.75s ease, transform 0.75s ease;
+  transition: opacity 0.75s var(--ease), transform 0.75s var(--ease);
+  will-change: opacity, transform;
 }
 
-.reveal.visible {
+.js-ready .reveal.visible {
   opacity: 1;
   transform: translateY(0);
 }
@@ -1108,7 +1224,7 @@ h1 span {
     left: 0;
     box-shadow: 12px 0 40px rgba(215, 255, 63, 0.12);
     overflow-y: auto;
-    padding-top: 0;
+    padding-top: 28px;
     padding-bottom: 40px;
   }
 
@@ -1164,7 +1280,10 @@ h1 span {
     grid-template-columns: 1fr auto;
     align-items: center;
     gap: 42px;
-    padding: 140px 0 60px;
+    padding: 140px 30px 60px;
+    max-width: var(--content-max);
+    margin-inline: auto;
+    width: 100%;
   }
 
   .hero-content {
@@ -1193,14 +1312,17 @@ h1 span {
   }
 
   .feelings-grid,
-  .about-grid,
-  .solution-cards,
-  .stats-row {
+  .about-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .solution-cards,
+  .stats-row {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
   .guide-section {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 40px;
   }
 
@@ -1232,6 +1354,10 @@ h1 span {
 
   .benefits-image {
     margin-top: 0;
+  }
+
+  .footer-container {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
   .footer-bottom {
@@ -1330,7 +1456,7 @@ h1 span {
     grid-template-columns: 1fr;
   }
 
-  .service-left,
+  .services-left,
   .benefits-left,
   .about-image-wrap,
   .benefits-image {
@@ -1386,8 +1512,14 @@ h1 span {
   }
 
   .benefit-icon {
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    min-width: 44px;
+    height: 44px;
+    border-radius: 14px;
+  }
+  .benefit-icon svg {
+    width: 22px;
+    height: 22px;
   }
 
   .footer-bottom {
@@ -1656,8 +1788,14 @@ h1 span {
   }
 
   .card-icon {
-    font-size: 2rem;
-    margin-bottom: 12px;
+    width: 48px;
+    height: 48px;
+    margin-bottom: 14px;
+    border-radius: 14px;
+  }
+  .card-icon svg {
+    width: 22px;
+    height: 22px;
   }
 
   .solution-card h3 {
@@ -1676,11 +1814,14 @@ h1 span {
   }
 
   .benefit-icon {
-    width: 36px;
-    height: 36px;
-    min-width: 36px;
-    border-radius: 10px;
-    font-size: 0.95rem;
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    border-radius: 12px;
+  }
+  .benefit-icon svg {
+    width: 20px;
+    height: 20px;
   }
 
   .benefit-item {
@@ -1732,7 +1873,7 @@ h1 span {
   }
 
   .faq-item.active .faq-answer {
-    max-height: 320px;
+    max-height: 500px;
     padding-bottom: 16px;
   }
 
@@ -1792,4 +1933,983 @@ h1 span {
   .feelings-subtitle {
     font-size: 0.93rem;
   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ============================================================
+   PREMIUM UPGRADES
+   ============================================================ */
+
+/* Scroll progress bar */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  z-index: 1100;
+  background: rgba(255, 255, 255, 0.04);
+  pointer-events: none;
+}
+.scroll-progress span {
+  display: block;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #b9e02b, var(--accent), #f7ff7a);
+  transform-origin: 0 50%;
+  box-shadow: 0 0 12px rgba(215, 255, 63, 0.55);
+  transition: width 0.08s linear;
+}
+
+/* Numbered section markers */
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+.section-tag .section-num {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  padding: 4px 8px;
+  border: 1px solid rgba(215, 255, 63, 0.35);
+  border-radius: 6px;
+  background: rgba(215, 255, 63, 0.06);
+}
+.section-tag.center {
+  justify-content: center;
+}
+
+/* Hero halo behind headline */
+.hero-section {
+  isolation: isolate;
+}
+.hero-halo {
+  position: absolute;
+  inset: -10% -10% auto -10%;
+  height: 70%;
+  background:
+    radial-gradient(50% 60% at 20% 30%, rgba(215, 255, 63, 0.16), transparent 70%),
+    radial-gradient(40% 50% at 80% 70%, rgba(215, 255, 63, 0.08), transparent 70%);
+  filter: blur(20px);
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+/* Hero image refinement */
+.hero-image-wrap {
+  position: relative;
+  overflow: visible;
+}
+.hero-image-wrap::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 32px;
+  background: linear-gradient(135deg, rgba(215, 255, 63, 0.5), transparent 50%, rgba(255, 255, 255, 0.05));
+  z-index: -1;
+  opacity: 0.7;
+  filter: blur(8px);
+  pointer-events: none;
+}
+.hero-image-wrap img {
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
+}
+
+/* Hero proof strip */
+.hero-proof {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  width: fit-content;
+  max-width: 100%;
+}
+.proof-stars {
+  display: inline-flex;
+  gap: 2px;
+  color: var(--accent);
+}
+.proof-stars svg {
+  width: 16px;
+  height: 16px;
+}
+.hero-proof p {
+  margin: 0;
+  font-size: 0.86rem;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.hero-proof em {
+  color: var(--text);
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* Card layered sheen + hover bloom */
+.feeling-card,
+.about-box,
+.solution-card,
+.stat-card,
+.faq-item,
+.footer-section {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.01)) , #0d0d0d;
+  border: 1px solid var(--border);
+  transition: transform 0.3s var(--ease), border-color 0.3s var(--ease), box-shadow 0.3s var(--ease), background 0.3s var(--ease);
+}
+
+.feeling-card:hover,
+.stat-card:hover,
+.about-box:hover,
+.solution-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(215, 255, 63, 0.28);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(215, 255, 63, 0.06), 0 0 30px rgba(215, 255, 63, 0.08);
+}
+
+/* Guide stat refinement */
+.guide-stat {
+  background: linear-gradient(180deg, rgba(215, 255, 63, 0.05), rgba(215, 255, 63, 0.01));
+  border: 1px solid rgba(215, 255, 63, 0.14);
+  transition: transform 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+.guide-stat:hover {
+  transform: translateY(-3px);
+  border-color: rgba(215, 255, 63, 0.4);
+}
+.guide-stat h4 {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.04em;
+}
+
+.stat-card h3,
+.counter {
+  font-variant-numeric: tabular-nums;
+}
+
+/* App feature SVG ticks */
+.feat-check svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+.feat-check {
+  display: inline-flex;
+  width: 22px;
+  height: 22px;
+  border-radius: 7px;
+  background: rgba(215, 255, 63, 0.14);
+  align-items: center;
+  justify-content: center;
+}
+
+/* Transform CTA halo */
+.transform-section {
+  position: relative;
+  overflow: hidden;
+}
+.transform-halo {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(40% 60% at 50% 50%, rgba(215, 255, 63, 0.22), transparent 60%),
+    radial-gradient(80% 40% at 50% 0%, rgba(215, 255, 63, 0.10), transparent 70%);
+  filter: blur(10px);
+  pointer-events: none;
+  z-index: 0;
+}
+.transform-section > *:not(.transform-halo) {
+  position: relative;
+  z-index: 1;
+}
+
+/* Magnetic button base — small lift; JS adds translate on desktop */
+.magnetic {
+  transition: transform 0.18s var(--ease), box-shadow 0.25s var(--ease), background 0.2s var(--ease);
+  will-change: transform;
+}
+.magnetic:hover {
+  box-shadow: var(--accent-glow);
+}
+
+/* Social row in footer */
+.social-row {
+  display: inline-flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+.social-row a {
+  width: 38px;
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  transition: color 0.2s var(--ease), border-color 0.2s var(--ease), background 0.2s var(--ease), transform 0.2s var(--ease);
+}
+.social-row a:hover,
+.social-row a:focus-visible {
+  color: var(--accent);
+  border-color: rgba(215, 255, 63, 0.4);
+  background: rgba(215, 255, 63, 0.08);
+  transform: translateY(-2px);
+}
+.social-row svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Fix coach card visual on desktop — keep it inside the image area */
+@media (min-width: 901px) {
+  .coach-card {
+    left: auto;
+    right: 18px;
+    bottom: -28px;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(6px);
+    background: rgba(15, 15, 15, 0.92);
+  }
+}
+
+/* Tighten heading rhythm a touch on large screens */
+@media (min-width: 901px) {
+  h1 {
+    letter-spacing: -0.035em;
+  }
+  .feelings-section h2,
+  .guide-content h2,
+  .about-header h2,
+  .services-left h2,
+  .benefits-left h2,
+  .transform-section h2,
+  .faq-inner h2 {
+    letter-spacing: -0.03em;
+  }
+}
+
+/* Pill polish */
+.pill {
+  border: 1px solid var(--border);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
+  transition: border-color 0.25s var(--ease), color 0.25s var(--ease), transform 0.25s var(--ease);
+}
+.pill:hover {
+  border-color: rgba(215, 255, 63, 0.35);
+  color: var(--accent);
+  transform: translateY(-2px);
+}
+
+/* FAQ refinement — soft hover */
+.faq-item {
+  transition: border-color 0.25s var(--ease), background 0.25s var(--ease);
+}
+.faq-item:hover {
+  border-color: rgba(215, 255, 63, 0.18);
+}
+
+/* Subtle divider between major sections for atmospheric rhythm */
+.guide-section::before,
+.about-page::before,
+.services-page::before,
+.benefits-page::before,
+.faq-page::before {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), transparent);
+  border-radius: 2px;
+  margin-bottom: 30px;
+  opacity: 0.6;
+  /* When a parent section becomes display: grid (e.g. .benefits-page on
+     desktop), this pseudo-element would otherwise be placed in the first
+     grid cell and break the 2-column layout. Span all columns to keep it
+     as a top decorator rather than a content cell. */
+  grid-column: 1 / -1;
+}
+
+/* Mobile spacing tweaks for hero proof */
+@media (max-width: 700px) {
+  .hero-proof {
+    margin-inline: auto;
+  }
+  .hero-proof p {
+    white-space: normal;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .hero-proof {
+    flex-direction: column;
+    text-align: center;
+    border-radius: 18px;
+    padding: 12px 14px;
+  }
+}
+
+/* ============================================================
+   PREMIUM POLISH v2 — grain, scrollbar, focus rings, marquee,
+   testimonials, image zoom, animated nav underline, CTA arrow
+   ============================================================ */
+
+/* Subtle film grain across the page */
+.grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1099;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  background-size: 160px 160px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grain {
+    display: none;
+  }
+}
+
+/* Custom scrollbar (WebKit + Firefox) */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(215, 255, 63, 0.35) transparent;
+}
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(215, 255, 63, 0.5), rgba(215, 255, 63, 0.25));
+  border-radius: 999px;
+  border: 2px solid #0a0a0a;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, rgba(215, 255, 63, 0.75), rgba(215, 255, 63, 0.4));
+}
+
+/* Unified focus ring */
+*:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+.book-btn:focus-visible,
+.primary-btn:focus-visible,
+.transform-btn:focus-visible,
+.footer-btn:focus-visible,
+.secondary-btn:focus-visible {
+  outline-offset: 4px;
+}
+
+/* ---- Image zoom frame ---- */
+.img-frame {
+  position: relative;
+  overflow: hidden;
+  border-radius: inherit;
+  isolation: isolate;
+}
+.img-frame img {
+  transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1), filter 0.6s ease;
+  display: block;
+  width: 100%;
+  height: auto;
+}
+@media (hover: hover) and (pointer: fine) {
+  .img-frame:hover img {
+    transform: scale(1.05);
+    filter: brightness(1.05) saturate(1.05);
+  }
+}
+.feelings-image,
+.guide-image,
+.about-image-wrap,
+.solution-image,
+.benefits-image,
+.hero-image-wrap {
+  border-radius: 28px;
+}
+.hero-image-wrap {
+  border-radius: 30px;
+}
+.feelings-image .img-frame,
+.guide-image .img-frame,
+.about-image-wrap .img-frame,
+.solution-image .img-frame,
+.benefits-image .img-frame,
+.hero-image-wrap .img-frame {
+  border-radius: inherit;
+}
+.about-image-wrap .img-frame img {
+  aspect-ratio: 4/5;
+  object-fit: cover;
+  max-height: 620px;
+  width: 100%;
+}
+.solution-image .img-frame img {
+  max-height: 600px;
+  object-fit: cover;
+}
+.benefits-image .img-frame img {
+  object-fit: cover;
+  max-height: 640px;
+}
+@media (min-width: 901px) {
+  .about-image-wrap .img-frame img {
+    max-height: 700px;
+  }
+}
+
+/* Subtle ken-burns on hero image (motion-safe) */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes ken-burns {
+    0%, 100% { transform: scale(1.0); }
+    50% { transform: scale(1.04); }
+  }
+  .hero-image-wrap .img-frame img {
+    animation: ken-burns 18s ease-in-out infinite;
+  }
+  .hero-image-wrap:hover .img-frame img {
+    animation-play-state: paused;
+  }
+}
+
+/* ---- Animated nav underline (desktop) ---- */
+@media (min-width: 901px) {
+  nav a {
+    overflow: hidden;
+  }
+  nav a::after {
+    content: '';
+    position: absolute;
+    left: 16px;
+    right: 16px;
+    bottom: 8px;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    border-radius: 2px;
+  }
+  nav a:hover::after,
+  nav a:focus-visible::after,
+  nav a.is-active::after {
+    transform: scaleX(1);
+  }
+}
+
+/* ---- Marquee strip ---- */
+.marquee-strip {
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(90deg, rgba(215, 255, 63, 0.04), rgba(255, 255, 255, 0.02), rgba(215, 255, 63, 0.04));
+  padding: 16px 0;
+  margin: 24px 0;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.marquee-track {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  animation: marquee-scroll 38s linear infinite;
+  will-change: transform;
+}
+.marquee-strip:hover .marquee-track {
+  animation-play-state: paused;
+}
+/* Use margin-right on every child instead of `gap` so the spacing between the
+   last child of the first half and the first child of the second half is
+   identical to all other spacings. With `gap` there is no gap after the last
+   child, which produces a visible jump when the track loops at translateX(-50%). */
+.marquee-item,
+.marquee-dot {
+  margin-right: 28px;
+}
+.marquee-item {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: clamp(0.92rem, 2vw, 1.15rem);
+  color: var(--text);
+}
+.marquee-dot {
+  color: var(--accent);
+  font-size: 0.7rem;
+  line-height: 1;
+}
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+    transform: translateX(0);
+  }
+}
+
+/* ---- Testimonials ---- */
+.results-section {
+  padding: 60px 0;
+}
+.results-header {
+  max-width: 720px;
+  margin-bottom: 32px;
+}
+.results-header h2 {
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  line-height: 1.05;
+  font-weight: 900;
+  margin-bottom: 16px;
+}
+.results-header h2 span {
+  color: var(--accent);
+}
+.results-intro {
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-top: 4px;
+}
+
+.testimonial-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 641px) {
+  .testimonial-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (min-width: 901px) {
+  .testimonial-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+  }
+  .results-section {
+    padding: 80px 0;
+  }
+}
+
+.testimonial-card {
+  position: relative;
+  display: grid;
+  gap: 14px;
+  padding: 26px;
+  border-radius: 26px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01)), #0d0d0d;
+  border: 1px solid var(--border);
+  transition: transform 0.3s var(--ease), border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
+  overflow: hidden;
+}
+.testimonial-card::before {
+  content: '\201C'; /* curly opening double quote */
+  position: absolute;
+  top: 6px;
+  right: 18px;
+  font-family: var(--font-display);
+  font-size: 6rem;
+  font-weight: 900;
+  color: rgba(215, 255, 63, 0.12);
+  line-height: 1;
+  pointer-events: none;
+}
+.testimonial-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(215, 255, 63, 0.3);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(215, 255, 63, 0.08);
+}
+.testimonial-stars {
+  display: inline-flex;
+  gap: 2px;
+  color: var(--accent);
+}
+.testimonial-stars svg {
+  width: 16px;
+  height: 16px;
+}
+.testimonial-card blockquote {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text);
+  font-style: normal;
+  margin: 0;
+}
+.testimonial-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  margin-top: 4px;
+}
+.testimonial-meta .avatar {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--accent), #8fbf00);
+  color: #0a0a0a;
+  font-weight: 900;
+  font-family: var(--font-display);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+}
+.testimonial-meta strong {
+  display: block;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text);
+}
+.testimonial-meta small {
+  display: block;
+  color: var(--muted);
+  font-size: 0.82rem;
+  margin-top: 2px;
+}
+
+/* ---- Animated arrow on Transform CTA ---- */
+.has-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.btn-arrow {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.has-arrow:hover .btn-arrow,
+.has-arrow:focus-visible .btn-arrow {
+  transform: translateX(4px);
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn-arrow {
+    transition: none;
+  }
+}
+
+/* Refined top bar — glass with soft glow */
+.top-bar {
+  background: rgba(8, 8, 8, 0.7);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  backdrop-filter: blur(14px) saturate(140%);
+  box-shadow: 0 1px 0 rgba(215, 255, 63, 0.06), 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+/* Section number badge — softer pill */
+.section-tag .section-num {
+  position: relative;
+  overflow: hidden;
+}
+.section-tag .section-num::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent, rgba(215, 255, 63, 0.35), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+.section-tag:hover .section-num::before {
+  transform: translateX(100%);
+}
+
+/* Coach card — desktop overlap polish (override prior absolute) */
+@media (min-width: 901px) {
+  .hero-image-wrap {
+    overflow: visible;
+  }
+  .coach-card {
+    z-index: 2;
+  }
+}
+
+/* Mobile coach card — overlay onto bottom of image */
+@media (max-width: 900px) {
+  .hero-image-wrap {
+    position: relative;
+  }
+  .coach-card {
+    position: absolute;
+    bottom: 14px;
+    left: 14px;
+    right: 14px;
+    margin-top: 0;
+    width: auto;
+    background: rgba(10, 10, 10, 0.78);
+    -webkit-backdrop-filter: blur(10px) saturate(140%);
+    backdrop-filter: blur(10px) saturate(140%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 14px 16px;
+    border-radius: 18px;
+  }
+  .coach-card small {
+    font-size: 0.7rem;
+  }
+  .coach-card h3 {
+    font-size: 1.2rem;
+    margin-top: 4px;
+  }
+  .coach-card p {
+    margin-top: 4px;
+    font-size: 0.82rem;
+  }
+}
+
+/* Reduce stacking on smallest screens to not crush image */
+@media (max-width: 375px) {
+  .coach-card {
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+    padding: 10px 12px;
+    border-radius: 14px;
+  }
+  .coach-card h3 {
+    font-size: 1.05rem;
+    margin-top: 2px;
+  }
+}
+
+/* Make results section live inside content-wrapper rhythm */
+.results-section .testimonial-grid {
+  margin-top: 8px;
+}
+
+/* Slight rhythm fix: ensure transform-section text wraps nicely */
+.transform-section h2 {
+  text-wrap: balance;
+}
+
+/* Marquee on mobile — slow down a bit so reading is easier */
+@media (max-width: 700px) {
+  .marquee-track {
+    animation-duration: 26s;
+  }
+  .marquee-item,
+  .marquee-dot {
+    margin-right: 18px;
+  }
+  .marquee-strip {
+    padding: 12px 0;
+  }
+}
+
+/* ============================================================
+   PREMIUM POLISH v3 — tap-target a11y, tablet layout, hero
+   balance, micro-interactions, smoother section rhythm
+   ============================================================ */
+
+/* --- Mobile tap targets in footer (Quick Links, email, socials).
+   Audit found Quick Links at 38×16 and social icons at 38×38 —
+   both below the 44px WCAG/Apple minimum. Padding via inline-flex
+   keeps the visual size identical (extra hit area only). --- */
+@media (max-width: 900px) {
+  .footer-section ul li a,
+  .footer-section p a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 8px 2px;
+  }
+  .footer-section ul {
+    gap: 4px;
+  }
+  .social-row {
+    gap: 12px;
+  }
+  .social-row a {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* --- Tablet (700–900px) layout density.
+   Audit found feelings (4 cards) and about (image + 3 boxes) stayed
+   1-column from 641–900px, making the page ~1500px tall on tablet
+   with a single narrow image stretched across the viewport. Switching
+   to 2-col uses tablet width far better and shortens scroll length. --- */
+@media (min-width: 700px) and (max-width: 900px) {
+  .feelings-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .about-grid {
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 32px;
+    align-items: start;
+  }
+
+  .about-image-wrap img {
+    max-height: 560px;
+  }
+
+  /* 3 solution cards fit cleanly at tablet width — avoid the 2+1
+     orphan that the existing 641px breakpoint produces. */
+  .solution-cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  /* Constrain hero image so single-column hero doesn't dominate
+     viewport (was producing ~1486px tall hero on iPad portrait). */
+  .hero-image-wrap {
+    max-width: 520px;
+  }
+
+  /* Tighten section vertical rhythm a touch on tablet */
+  .feelings-section,
+  .guide-section,
+  .about-page,
+  .services-page,
+  .benefits-page,
+  .faq-page,
+  .results-section {
+    padding: 56px 0;
+  }
+}
+
+/* --- Section anchor scroll-margin for the testimonials section
+   (it doesn't have an id-targeted nav link but the same offset
+   keeps it consistent if linked from elsewhere later). --- */
+#results {
+  scroll-margin-top: calc(var(--topbar-height) + 12px);
+}
+
+/* --- Subtle attention pulse on the final Transform CTA. The
+   primary hero CTA stays calm; only the bottom CTA pulses so the
+   page builds toward a single, unmistakable action. Motion-safe. --- */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes cta-pulse {
+    0%, 100% {
+      box-shadow: 0 12px 30px rgba(215, 255, 63, 0.18), 0 0 0 0 rgba(215, 255, 63, 0.35);
+    }
+    50% {
+      box-shadow: 0 16px 36px rgba(215, 255, 63, 0.26), 0 0 0 12px rgba(215, 255, 63, 0);
+    }
+  }
+  .transform-btn {
+    animation: cta-pulse 2.8s ease-in-out infinite;
+  }
+  .transform-btn:hover,
+  .transform-btn:focus-visible {
+    animation-play-state: paused;
+  }
+}
+
+/* --- Section divider accent: was a flat 60×2px line. Give it a
+   subtle taper + glow so it reads as intentional craft, not a hr. --- */
+.guide-section::before,
+.about-page::before,
+.services-page::before,
+.benefits-page::before,
+.faq-page::before {
+  width: 72px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), transparent);
+  box-shadow: 0 0 12px rgba(215, 255, 63, 0.35);
+  opacity: 0.7;
+}
+
+/* --- Testimonial avatar: tiny lift on card hover for personality --- */
+.testimonial-card:hover .avatar {
+  transform: scale(1.06) rotate(-2deg);
+  transition: transform 0.3s var(--ease);
+}
+.testimonial-meta .avatar {
+  transition: transform 0.3s var(--ease);
+}
+
+/* --- Cleaner first-tap state on touch: kill the default tap highlight
+   which clashes with our custom focus + active styles. --- */
+a,
+button,
+[role="button"] {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* --- Smoother backdrop blur on top-bar at scroll: existing rule
+   uses backdrop-filter blur(14px) — add a soft border-transition
+   when hiding so the bar fades, not snaps. --- */
+.top-bar {
+  transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.28s ease,
+              border-color 0.28s ease;
+}
+.top-bar.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* --- Tighter mobile hero spacing for premium density.
+   Audit showed hero ~952px on 375×812 — text-block + image stack
+   was eating 117% of viewport height. Trim padding without
+   touching content sizes. --- */
+@media (max-width: 520px) {
+  .hero-section {
+    gap: 22px;
+  }
+  .hero-buttons {
+    margin-bottom: 4px;
+  }
+  .hero-proof {
+    margin-top: 18px;
+  }
+}
+
+/* --- FAQ open state: add a soft accent background so the open
+   item visually anchors the column. Subtle, premium. --- */
+.faq-item.active {
+  background: linear-gradient(180deg, rgba(215, 255, 63, 0.04), transparent 60%);
+  border-color: rgba(215, 255, 63, 0.18);
+}
+
+/* --- Improve focus-visible contrast for the FAQ question button
+   (text-on-dark) — current global ring is good but the offset
+   was clipping behind sibling borders here. --- */
+.faq-question:focus-visible {
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* --- Small detail: pill row breathing room above the stats so the
+   "Nutrition / Strength / ..." line doesn't crowd the numbers. --- */
+.guide-pills {
+  margin-top: 14px;
+  margin-bottom: 8px;
 }

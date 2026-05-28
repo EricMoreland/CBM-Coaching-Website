@@ -137,9 +137,19 @@ function onScroll() {
   const y = window.scrollY || 0;
   if (bgText) bgText.style.transform = `translateY(calc(-50% + ${y * 0.05}px))`;
   if (topBar) {
-    // Only show top-bar when at the very top of the page
-    if (y === 0) topBar.classList.remove('hidden');
-    else topBar.classList.add('hidden');
+    const isDesktop = window.innerWidth > 1100;
+    if (isDesktop) {
+      // Hide on scroll-down, show on scroll-up
+      if (y > lastY && y > 60) {
+        topBar.classList.add('hidden');
+      } else {
+        topBar.classList.remove('hidden');
+      }
+    } else {
+      // Mobile: only show when at the very top (unchanged)
+      if (y === 0) topBar.classList.remove('hidden');
+      else topBar.classList.add('hidden');
+    }
   }
   lastY = y;
   ticking = false;

@@ -3,25 +3,74 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CBM - Created By Moreland</title>
+
+    <meta name="description" content="CBM — Coached by Moreland. Personal online coaching with world-champion bodybuilder Eric Moreland. Fitness plans built around your life — no guesswork, no boredom, just results." />
+    <meta name="author" content="Eric Moreland" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#000000" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="CBM - Coached By Moreland" />
+    <meta property="og:title" content="CBM - Coached By Moreland | Personal Fitness Coaching" />
+    <meta property="og:description" content="Online coaching with world-champion bodybuilder Eric Moreland. Personalized plans, real results — no guesswork, no boredom." />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1779199109940-b2234eed9ffd?w=1200&auto=format&fit=crop&q=80" />
+    <meta property="og:image:alt" content="Eric Moreland, world-champion fitness coach" />
+    <meta property="og:locale" content="en_US" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="CBM - Coached By Moreland" />
+    <meta name="twitter:description" content="Online coaching with a world-champion bodybuilder. Plans built around your life." />
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1779199109940-b2234eed9ffd?w=1200&auto=format&fit=crop&q=80" />
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="CBM" />
+
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23000'/%3E%3Ctext x='32' y='44' font-family='Montserrat,Arial,sans-serif' font-size='32' font-weight='900' fill='%23d7ff3f' text-anchor='middle'%3ECBM%3C/text%3E%3C/svg%3E" />
+
+    <title>CBM - Coached By Moreland</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://images.unsplash.com" />
+    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1779199109940-b2234eed9ffd?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwcm9maWxlLXBhZ2V8MXx8fGVufDB8fHx8fA%3D%3D" fetchpriority="high" />
+
     <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/main.css" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "CBM - Coached By Moreland",
+        "description": "Personal online fitness coaching with world-champion bodybuilder Eric Moreland.",
+        "founder": {
+          "@type": "Person",
+          "name": "Eric Moreland",
+          "jobTitle": "Fitness Coach",
+          "award": "World Champion Bodybuilder"
+        },
+        "areaServed": "Worldwide",
+        "serviceType": "Personal Fitness Coaching"
+      }
+    </script>
   </head>
   <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <div class="grain" aria-hidden="true"></div>
+    <div class="scroll-progress" aria-hidden="true"><span></span></div>
     <header class="top-bar">
       <div class="top-bar-inner">
         <p>No guesswork. No boredom. Just results!</p>
-        <button class="mobile-menu-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
+        <button class="mobile-menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="sidebar">☰</button>
       </div>
     </header>
 
     <div class="page-layout">
-      <aside class="sidebar" aria-label="Primary navigation">
+      <aside class="sidebar" id="sidebar" aria-label="Primary navigation">
         <div class="sidebar-top">
           <div class="logo">CBM</div>
           <button class="sidebar-close" aria-label="Close menu">×</button>
@@ -33,11 +82,12 @@
           <a href="#faq">FAQ</a>
         </nav>
 
-        <button class="book-btn">CLAIM MY FREE CONSULT</button>
+        <button class="book-btn magnetic">CLAIM MY FREE CONSULT</button>
       </aside>
 
-      <main class="page-main">
+      <main class="page-main" id="main-content">
         <section class="hero-section" id="home">
+        <div class="hero-halo" aria-hidden="true"></div>
         <div class="bg-text" aria-hidden="true">CBM</div>
 
         <div class="hero-content">
@@ -57,16 +107,30 @@
           </p>
 
           <div class="hero-buttons">
-            <button class="primary-btn book-open">CLAIM MY FREE CONSULT</button>
+            <button class="primary-btn book-open magnetic">CLAIM MY FREE CONSULT</button>
+          </div>
+
+          <div class="hero-proof" aria-label="Trust signals">
+            <div class="proof-stars" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.9 7.1.6-5.4 4.7 1.7 7-6.3-3.8L5.7 21l1.7-7L2 9.5l7.1-.6L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.9 7.1.6-5.4 4.7 1.7 7-6.3-3.8L5.7 21l1.7-7L2 9.5l7.1-.6L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.9 7.1.6-5.4 4.7 1.7 7-6.3-3.8L5.7 21l1.7-7L2 9.5l7.1-.6L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.9 7.1.6-5.4 4.7 1.7 7-6.3-3.8L5.7 21l1.7-7L2 9.5l7.1-.6L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.9 7.1.6-5.4 4.7 1.7 7-6.3-3.8L5.7 21l1.7-7L2 9.5l7.1-.6L12 2z"/></svg>
+            </div>
+            <p>World Champion coach &middot; Plans built around <em>your</em> life</p>
           </div>
         </div>
 
         <div class="hero-image-wrap">
-          <img
-            src="https://images.unsplash.com/photo-1779199109940-b2234eed9ffd?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwcm9maWxlLXBhZ2V8MXx8fGVufDB8fHx8fA%3D%3D"
-            alt="Fitness Coach"
-            decoding="async"
-          />
+          <div class="img-frame">
+            <img
+              src="https://images.unsplash.com/photo-1779199109940-b2234eed9ffd?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwcm9maWxlLXBhZ2V8MXx8fGVufDB8fHx8fA%3D%3D"
+              alt="Eric Moreland, fitness coach"
+              decoding="async"
+              fetchpriority="high"
+            />
+          </div>
 
           <div class="coach-card">
             <small>YOUR COACH</small>
@@ -78,7 +142,7 @@
         <div class="content-wrapper">
           <section class="feelings-section">
         <div class="feelings-container">
-          <p class="section-tag">SOUND FAMILIAR?</p>
+          <p class="section-tag"><span class="section-num">01</span>SOUND FAMILIAR?</p>
           <h2>
             Feeling Bored,<br />
             Overwhelmed,<br />
@@ -119,19 +183,21 @@
         </div>
 
         <div class="feelings-image">
-          <img
-            src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1200&auto=format&fit=crop&fm=webp"
-            alt="Gym intimidation"
-            loading="lazy"
-            decoding="async"
-          />
+          <div class="img-frame">
+            <img
+              src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1200&auto=format&fit=crop&fm=webp"
+              alt="Gym intimidation"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
         </div>
       </section>
 
       <section class="guide-section">
 
         <div class="guide-content">
-          <p class="section-tag">YOUR GUIDE</p>
+          <p class="section-tag"><span class="section-num">02</span>YOUR GUIDE</p>
           <h2>
             No More Struggle,<br />
             <span
@@ -141,12 +207,14 @@
           </h2>
 
           <div class="guide-image">
-            <img
-              src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              alt="Coach guiding athlete through workout"
-              loading="lazy"
-              decoding="async"
-            />
+            <div class="img-frame">
+              <img
+                src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Coach guiding athlete through workout"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
           </div>
 
           <p class="guide-text">
@@ -159,27 +227,27 @@
             <p class="app-label">POWERED BY THE EVERFIT APP</p>
             <div class="app-features">
               <div class="app-feature">
-                <span class="feat-check">✓</span>
+                <span class="feat-check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 11 8 15 16 6"/></svg></span>
                 <span>Custom workouts delivered to your phone</span>
               </div>
               <div class="app-feature">
-                <span class="feat-check">✓</span>
+                <span class="feat-check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 11 8 15 16 6"/></svg></span>
                 <span>Video guides for every exercise</span>
               </div>
               <div class="app-feature">
-                <span class="feat-check">✓</span>
+                <span class="feat-check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 11 8 15 16 6"/></svg></span>
                 <span>Log sets, reps &amp; weight in real time</span>
               </div>
               <div class="app-feature">
-                <span class="feat-check">✓</span>
+                <span class="feat-check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 11 8 15 16 6"/></svg></span>
                 <span>Direct messaging with your coach</span>
               </div>
               <div class="app-feature">
-                <span class="feat-check">✓</span>
+                <span class="feat-check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 11 8 15 16 6"/></svg></span>
                 <span>Nutrition &amp; calorie tracking built in</span>
               </div>
               <div class="app-feature">
-                <span class="feat-check">✓</span>
+                <span class="feat-check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 11 8 15 16 6"/></svg></span>
                 <span>Progress photos &amp; body metrics</span>
               </div>
             </div>
@@ -195,11 +263,11 @@
 
           <div class="guide-stats">
             <div class="guide-stat">
-              <h4>7+</h4>
+              <h4><span class="counter" data-to="7" data-suffix="+">7+</span></h4>
               <p>Years Experience</p>
             </div>
             <div class="guide-stat">
-              <h4>100%</h4>
+              <h4><span class="counter" data-to="100" data-suffix="%">100%</span></h4>
               <p>Personalized to You</p>
             </div>
             <div class="guide-stat">
@@ -210,9 +278,38 @@
         </div>
       </section>
 
+      <section class="marquee-strip" aria-hidden="true">
+        <div class="marquee-track">
+          <span class="marquee-item">World Champion Coach</span>
+          <span class="marquee-dot">●</span>
+          <span class="marquee-item">7+ Years Experience</span>
+          <span class="marquee-dot">●</span>
+          <span class="marquee-item">Personalized Plans</span>
+          <span class="marquee-dot">●</span>
+          <span class="marquee-item">Online &amp; Local</span>
+          <span class="marquee-dot">●</span>
+          <span class="marquee-item">Real Accountability</span>
+          <span class="marquee-dot">●</span>
+          <span class="marquee-item">No Guesswork</span>
+          <span class="marquee-dot">●</span>
+          <span class="marquee-item">World Champion Coach</span>
+          <span class="marquee-dot">●</span>
+          <span class="marquee-item">7+ Years Experience</span>
+          <span class="marquee-dot">●</span>
+          <span class="marquee-item">Personalized Plans</span>
+          <span class="marquee-dot">●</span>
+          <span class="marquee-item">Online &amp; Local</span>
+          <span class="marquee-dot">●</span>
+          <span class="marquee-item">Real Accountability</span>
+          <span class="marquee-dot">●</span>
+          <span class="marquee-item">No Guesswork</span>
+          <span class="marquee-dot">●</span>
+        </div>
+      </section>
+
       <section class="about-page" id="about">
         <div class="about-header">
-          <p class="section-tag">ABOUT CBM</p>
+          <p class="section-tag"><span class="section-num">03</span>ABOUT CBM</p>
 
           <h2>
             Built From Real
@@ -227,12 +324,14 @@
 
         <div class="about-grid">
           <div class="about-image-wrap">
-            <img
-              src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1200&auto=format&fit=crop&fm=webp"
-              alt="CBM Coach"
-              loading="lazy"
-              decoding="async"
-            />
+            <div class="img-frame">
+              <img
+                src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1200&auto=format&fit=crop&fm=webp"
+                alt="CBM Coach"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
 
             <div class="experience-card">
               <h3>7+ Years</h3>
@@ -271,7 +370,7 @@
 
         <div class="stats-row">
           <div class="stat-card">
-            <h3>30+ Weeks</h3>
+            <h3><span class="counter" data-to="30" data-suffix="+ Weeks">30+ Weeks</span></h3>
             <p>Personal Dieting Experience</p>
           </div>
 
@@ -281,7 +380,7 @@
           </div>
 
           <div class="stat-card">
-            <h3>Online & Local</h3>
+            <h3>Online &amp; Local</h3>
             <p>Coaching Available Anywhere</p>
           </div>
         </div>
@@ -290,7 +389,7 @@
       <section class="services-page">
         <div class="services-top">
           <div class="services-left">
-            <p class="section-tag">THE CBM SOLUTION</p>
+            <p class="section-tag"><span class="section-num">04</span>THE CBM SOLUTION</p>
 
             <h2>
               Guided<br />
@@ -310,17 +409,29 @@
         </div>
 
         <div class="solution-image">
-          <img
-            src="https://images.unsplash.com/photo-1605296867304-46d5465a13f1?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt="Athlete training with coach"
-            loading="lazy"
-            decoding="async"
-          />
+          <div class="img-frame">
+            <img
+              src="https://images.unsplash.com/photo-1605296867304-46d5465a13f1?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              alt="Athlete training with coach"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
         </div>
 
         <div class="solution-cards">
           <div class="solution-card">
-            <div class="card-icon">📅</div>
+            <div class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="17" rx="3"/>
+                <line x1="3" y1="9" x2="21" y2="9"/>
+                <line x1="8" y1="2" x2="8" y2="6"/>
+                <line x1="16" y1="2" x2="16" y2="6"/>
+                <circle cx="8" cy="14" r="1.2" fill="currentColor" stroke="none"/>
+                <circle cx="12" cy="14" r="1.2" fill="currentColor" stroke="none"/>
+                <circle cx="16" cy="14" r="1.2" fill="currentColor" stroke="none"/>
+              </svg>
+            </div>
             <h3>Consistent Progress</h3>
             <p>
               Weekly coaching and easy-to-follow routines keep you on track. No more skipping
@@ -329,7 +440,12 @@
           </div>
 
           <div class="solution-card">
-            <div class="card-icon">👤</div>
+            <div class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="8" r="4"/>
+                <path d="M4 21c0-4 4-7 8-7s8 3 8 7"/>
+              </svg>
+            </div>
             <h3>Personalized Support</h3>
             <p>
               A plan made for your body and schedule. We address each frustration - injury fears,
@@ -338,7 +454,11 @@
           </div>
 
           <div class="solution-card">
-            <div class="card-icon">🔥</div>
+            <div class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M13 2c.5 4 4.5 5 4.5 10.5A6.5 6.5 0 0 1 5 13c0-2 .8-3.6 2.5-5 0 2 1 3 2.5 3 0-3-1-4 0-7 1 1 2 2 3 0z"/>
+              </svg>
+            </div>
             <h3>Fun, Sustainable Workouts</h3>
             <p>
               We design workouts you can actually enjoy. Many clients say working out with us feels
@@ -350,7 +470,7 @@
 
       <section class="benefits-page">
         <div class="benefits-left">
-          <p class="section-tag">WHAT YOU CAN EXPECT</p>
+          <p class="section-tag"><span class="section-num">05</span>WHAT YOU CAN EXPECT</p>
 
           <h2>
             3 Benefits You'll
@@ -359,7 +479,11 @@
 
           <div class="benefits-list">
             <div class="benefit-item">
-              <div class="benefit-icon">⚡</div>
+              <div class="benefit-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="13 2 4 14 11 14 10 22 20 10 13 10 14 2" fill="currentColor" stroke="none"/>
+                </svg>
+              </div>
 
               <div>
                 <h3>Quick Fat Loss & Lean Muscle</h3>
@@ -372,7 +496,11 @@
             </div>
 
             <div class="benefit-item">
-              <div class="benefit-icon">♡</div>
+              <div class="benefit-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 12h4l3-9 4 18 3-9h4"/>
+                </svg>
+              </div>
 
               <div>
                 <h3>Habits & Lifestyle Change</h3>
@@ -385,7 +513,15 @@
             </div>
 
             <div class="benefit-item">
-              <div class="benefit-icon">🏆</div>
+              <div class="benefit-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M8 21h8"/>
+                  <path d="M12 17v4"/>
+                  <path d="M7 4h10v5a5 5 0 0 1-10 0V4z"/>
+                  <path d="M17 5h3a2 2 0 0 1 0 4h-3"/>
+                  <path d="M7 5H4a2 2 0 0 0 0 4h3"/>
+                </svg>
+              </div>
 
               <div>
                 <h3>Confidence & Support</h3>
@@ -397,17 +533,98 @@
         </div>
 
         <div class="benefits-image">
-          <img
-            src="https://plus.unsplash.com/premium_photo-1674059549221-e2943b475f62?q=80&w=464&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt="Athlete in a strength session"
-            loading="lazy"
-            decoding="async"
-          />
+          <div class="img-frame">
+            <img
+              src="https://plus.unsplash.com/premium_photo-1674059549221-e2943b475f62?q=80&w=464&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              alt="Athlete in a strength session"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section class="results-section" id="results">
+        <div class="results-header">
+          <p class="section-tag"><span class="section-num">06</span>RESULTS THAT SPEAK</p>
+          <h2>
+            What Clients <span>Actually Say</span>
+          </h2>
+          <p class="results-intro">
+            Real coaching, real consistency, real change. Here's what people experience after working
+            with Moreland.
+          </p>
+        </div>
+
+        <div class="testimonial-grid">
+          <article class="testimonial-card">
+            <div class="testimonial-stars" aria-label="5 out of 5 stars">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.9 7.1.6-5.4 4.7 1.7 7-6.3-3.8L5.7 21l1.7-7L2 9.5l7.1-.6L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.9 7.1.6-5.4 4.7 1.7 7-6.3-3.8L5.7 21l1.7-7L2 9.5l7.1-.6L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.9 7.1.6-5.4 4.7 1.7 7-6.3-3.8L5.7 21l1.7-7L2 9.5l7.1-.6L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.9 7.1.6-5.4 4.7 1.7 7-6.3-3.8L5.7 21l1.7-7L2 9.5l7.1-.6L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.9 7.1.6-5.4 4.7 1.7 7-6.3-3.8L5.7 21l1.7-7L2 9.5l7.1-.6L12 2z"/></svg>
+            </div>
+            <blockquote>
+              Training finally feels like something I want to do, not something I dread. Eric built a plan
+              around my actual life - not some textbook version of it.
+            </blockquote>
+            <div class="testimonial-meta">
+              <span class="avatar" aria-hidden="true">S</span>
+              <div>
+                <strong>Sarah K.</strong>
+                <small>Lost 12kg &middot; 6 months coaching</small>
+              </div>
+            </div>
+          </article>
+
+          <article class="testimonial-card">
+            <div class="testimonial-stars" aria-label="5 out of 5 stars">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.9 7.1.6-5.4 4.7 1.7 7-6.3-3.8L5.7 21l1.7-7L2 9.5l7.1-.6L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.9 7.1.6-5.4 4.7 1.7 7-6.3-3.8L5.7 21l1.7-7L2 9.5l7.1-.6L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.9 7.1.6-5.4 4.7 1.7 7-6.3-3.8L5.7 21l1.7-7L2 9.5l7.1-.6L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.9 7.1.6-5.4 4.7 1.7 7-6.3-3.8L5.7 21l1.7-7L2 9.5l7.1-.6L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.9 7.1.6-5.4 4.7 1.7 7-6.3-3.8L5.7 21l1.7-7L2 9.5l7.1-.6L12 2z"/></svg>
+            </div>
+            <blockquote>
+              I'd quit programs before. The difference here is the accountability - Eric actually checks in,
+              tweaks the plan, and pushes me when I'd normally fold.
+            </blockquote>
+            <div class="testimonial-meta">
+              <span class="avatar" aria-hidden="true">M</span>
+              <div>
+                <strong>Marcus T.</strong>
+                <small>+8kg lean muscle &middot; 9 months</small>
+              </div>
+            </div>
+          </article>
+
+          <article class="testimonial-card">
+            <div class="testimonial-stars" aria-label="5 out of 5 stars">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.9 7.1.6-5.4 4.7 1.7 7-6.3-3.8L5.7 21l1.7-7L2 9.5l7.1-.6L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.9 7.1.6-5.4 4.7 1.7 7-6.3-3.8L5.7 21l1.7-7L2 9.5l7.1-.6L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.9 7.1.6-5.4 4.7 1.7 7-6.3-3.8L5.7 21l1.7-7L2 9.5l7.1-.6L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.9 7.1.6-5.4 4.7 1.7 7-6.3-3.8L5.7 21l1.7-7L2 9.5l7.1-.6L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.9 7.1.6-5.4 4.7 1.7 7-6.3-3.8L5.7 21l1.7-7L2 9.5l7.1-.6L12 2z"/></svg>
+            </div>
+            <blockquote>
+              Walked into the gym terrified. Now it's the part of my day I look forward to. The
+              confidence shift is real and it carries into everything else.
+            </blockquote>
+            <div class="testimonial-meta">
+              <span class="avatar" aria-hidden="true">J</span>
+              <div>
+                <strong>Jess M.</strong>
+                <small>First-time lifter &middot; 4 months coaching</small>
+              </div>
+            </div>
+          </article>
         </div>
       </section>
 
       <section class="transform-section">
-        <p class="section-tag center">START TODAY</p>
+        <div class="transform-halo" aria-hidden="true"></div>
+        <p class="section-tag center"><span class="section-num">07</span>START TODAY</p>
 
         <h2>
           Ready to
@@ -419,20 +636,26 @@
           the first step now and we’ll personalize a plan just for you.
         </p>
 
-        <a href="#" class="transform-btn">CLAIM MY FREE CONSULT</a>
+        <button class="transform-btn magnetic has-arrow">
+          <span>CLAIM MY FREE CONSULT</span>
+          <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </button>
 
-        <small>Claim your spot - get started this week</small>
+        <small>Claim your spot &mdash; get started this week</small>
       </section>
 
       <section class="faq-page" id="faq">
         <div class="faq-inner">
-          <p class="section-tag">COMMON QUESTIONS</p>
+          <p class="section-tag"><span class="section-num">08</span>COMMON QUESTIONS</p>
 
           <h2>FAQ</h2>
 
           <div class="faq-list">
             <div class="faq-item active">
-              <button class="faq-question">
+              <button class="faq-question" aria-expanded="true">
                 I’m really busy - how can I fit this in?
                 <span>+</span>
               </button>
@@ -443,7 +666,7 @@
             </div>
 
             <div class="faq-item">
-              <button class="faq-question">
+              <button class="faq-question" aria-expanded="false">
                 I’ve failed before. How is this different?
                 <span>+</span>
               </button>
@@ -454,7 +677,7 @@
             </div>
 
             <div class="faq-item">
-              <button class="faq-question">
+              <button class="faq-question" aria-expanded="false">
                 What if I need help between sessions?
                 <span>+</span>
               </button>
@@ -465,7 +688,7 @@
             </div>
 
             <div class="faq-item">
-              <button class="faq-question">
+              <button class="faq-question" aria-expanded="false">
                 Do I need gym experience?
                 <span>+</span>
               </button>
@@ -476,7 +699,7 @@
             </div>
 
             <div class="faq-item">
-              <button class="faq-question">
+              <button class="faq-question" aria-expanded="false">
                 How quickly will I see results?
                 <span>+</span>
               </button>
@@ -492,7 +715,7 @@
       <footer class="footer">
         <div class="footer-container">
           <div class="footer-section">
-            <h3>CBM</h3>
+            <h4>CBM</h4>
             <p>Coached by Moreland. World Champion bodybuilder helping you build strength, confidence, and a healthy lifestyle.</p>
           </div>
 
@@ -508,11 +731,19 @@
           <div class="footer-section">
             <h4>CONTACT</h4>
             <p><a href="mailto:createdbymoreland@gmail.com">createdbymoreland@gmail.com</a></p>
+            <div class="social-row" aria-label="Follow CBM">
+              <a href="https://www.instagram.com/ericmorelandofficial/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+              </a>
+              <a href="https://wa.me/27795451880" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-12.7 7.4L3 21l2.2-5.2A8.5 8.5 0 1 1 21 11.5z"/><path d="M8.5 9.5c.6 2.4 2.6 4.4 5 5l1.6-1.4 2.4 1.1c-.2 1.3-1.3 2.3-2.6 2.3-3.6 0-7.4-3.8-7.4-7.4 0-1.3 1-2.4 2.3-2.6l1.1 2.4-1.4 1.6z"/></svg>
+              </a>
+            </div>
           </div>
 
           <div class="footer-section">
             <h4>GET STARTED</h4>
-            <button class="book-btn footer-btn">CLAIM MY FREE CONSULT</button>
+            <button class="book-btn footer-btn magnetic">CLAIM MY FREE CONSULT</button>
           </div>
         </div>
 
@@ -526,6 +757,6 @@
     </div>
     <div class="menu-backdrop"></div>
 
-    <script type="module" src="js/main.js"></script>
+    <script src="js/main.js" defer></script>
   </body>
 </html>

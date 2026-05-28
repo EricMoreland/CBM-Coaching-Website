@@ -15,17 +15,25 @@ A polished, responsive marketing page for a fitness coaching brand built with se
 
 ## Project structure
 
-- `index.html` — main landing page
-- `styles.css` — stylesheet for the published version
-- `script.js` — JavaScript for menu, smooth scrolling, and FAQ behavior
-- `src/` — source files for development
-  - `src/index.html`
-  - `src/css/main.css`
-  - `src/js/main.js`
+**All edits go in `src/`.** This is the only source of truth for the site.
+
+- `src/index.html` — markup (entry point)
+- `src/css/main.css` — styles
+- `src/js/main.js` — scripts (menu, smooth scrolling, FAQ, CTA wiring)
+- `index.html` (root) — thin redirect to `src/index.html` so double-clicking the project root still loads the site
+- `backup/legacy/` — previous standalone copies of `index.html` / `styles.css` / `script.js`, kept only for reference. **Do not edit these.**
+- `dist/` — build output produced by `npm run build` (do not edit by hand)
 
 ## Local preview
 
-Open `index.html` in a browser to preview the static site.
+Either:
+
+- Double-click `src/index.html` (the root `index.html` will also redirect there), or
+- Run a local server for live updates:
+  ```
+  npx serve src -p 5173
+  ```
+  then open <http://localhost:5173>.
 
 ## Notes
 
